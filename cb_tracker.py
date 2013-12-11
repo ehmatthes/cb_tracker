@@ -23,12 +23,14 @@
 #  timestamp - price
 #  timestamp - price
 #  ...
+#
 #  high:       price
 #  low:        price
 #  difference: amount
 #
 #  current:    price
-#  above low:  amount
+#  #(commented out) above low:  amount
+#  below high: amount
 
 # Parameters
 #

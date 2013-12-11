@@ -26,12 +26,12 @@ Output:
     timestamp - price
     timestamp - price
     ...
-    high:       price
-    low:        price
+    high:       price - timestamp
+    low:        price - timestamp
     difference: amount
 
     current:    price
-    above low:  amount
+	 below high: amount
 
 Parameters
 
