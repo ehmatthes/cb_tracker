@@ -73,7 +73,7 @@ def get_price():
         r = requests.get(price_url)
     except:
         # Couldn't get price; no error reporting at this point.
-	return 0
+        return 0
     if r.status_code == 200:
         data = json.loads(r.text)
         price = float(data['amount'])
