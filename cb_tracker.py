@@ -53,7 +53,7 @@ price_url = 'https://coinbase.com/api/v1/prices/spot_rate'
 INTERVAL = 60
 MAX_PRICES = 1000
 MAX_DISPLAY = 25
-DEBUG = True
+DEBUG = False
 
 # prices=[{'timestamp': ts, 'price': price}, ...]
 prices = []
@@ -97,11 +97,14 @@ def get_min_max():
     return(min, min_ts, max, max_ts)
 
 
-def show_single_price(price_dict):
+def show_single_price(price_dict, index):
     # Shows the price associated with a given time.
     timestamp = price_dict['timestamp'].strftime("%H:%M:%S")
     price = "{0:.2f}".format(price_dict['price'])
-    print('%s - %s' % (price, timestamp))
+    if index == 0:
+        print('$ %s - %s' % (price, timestamp))
+    else:
+        print('  %s - %s' % (price, timestamp))
 
 
 def display_info():
@@ -109,13 +112,11 @@ def display_info():
     os.system('clear')
     print("Current coinbase price data:")
     if len(prices) > MAX_DISPLAY:
-        for price_dict in prices[-MAX_DISPLAY:]:
-            show_single_price(price_dict)
+        for index, price_dict in enumerate(prices[-MAX_DISPLAY:]):
+            show_single_price(price_dict, index)
     else:
-        for price_dict in prices:
-            show_single_price(price_dict)
-    print("\n")
-    print(datetime.now().strftime("%H:%M:%S"))
+        for index, price_dict in enumerate(prices):
+            show_single_price(price_dict, index)
     print("\n")
     
     min_price, min_ts, max_price, max_ts = get_min_max()
