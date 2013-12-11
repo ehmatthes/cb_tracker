@@ -31,7 +31,7 @@ Output:
     difference: amount
 
     current:    price
-	 below high: amount
+    below high: amount
 
 Parameters
 
