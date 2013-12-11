@@ -53,7 +53,7 @@ price_url = 'https://coinbase.com/api/v1/prices/spot_rate'
 INTERVAL = 60
 MAX_PRICES = 1000
 MAX_DISPLAY = 25
-DEBUG = False
+DEBUG = True
 
 # prices=[{'timestamp': ts, 'price': price}, ...]
 prices = []
@@ -67,7 +67,11 @@ def get_price():
     # Gets current price at coinbase. Stores in prices, with timestamp.
     # Price is something between buy and sell price, updated
     #  every few seconds.
-    r = requests.get(price_url)
+    try:
+        r = requests.get(price_url)
+    except:
+        # Couldn't get price; no error reporting at this point.
+        pass
     if r.status_code == 200:
         data = json.loads(r.text)
         price = float(data['amount'])
@@ -118,6 +122,7 @@ def display_info():
     difference = "{0:.2f}".format(max_price - min_price)
     current_price = prices[-1]['price']
     above_low = "{0:.2f}".format(current_price - min_price)
+    below_high = "{0:.2f}".format(max_price - current_price)
     min_price = "{0:.2f}".format(min_price)
     max_price = "{0:.2f}".format(max_price)
     current_price = "{0:.2f}".format(current_price)
@@ -127,7 +132,8 @@ def display_info():
     print("difference:  ", difference)
     print("\n")
     print("current:    $", current_price)
-    print("above low:   ", above_low)
+    #print("above low:   ", above_low)
+    print("below high:  ", below_high)
 
 while True:
     # Get price.
