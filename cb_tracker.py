@@ -130,11 +130,12 @@ def display_info():
     max_price = "{0:.2f}".format(max_price)
     current_price = "{0:.2f}".format(current_price)
 
-    print("high:       $ %s - %s" % (max_price, max_ts.strftime("%H:%M:%S")))
+    print("current:    $", current_price)
+    print("high:         %s - %s" % (max_price, max_ts.strftime("%H:%M:%S")))
     print("low:          %s - %s" % (min_price, min_ts.strftime("%H:%M:%S")))
     print("difference:  ", difference)
     print("\n")
-    print("current:    $", current_price)
+    #print("current:    $", current_price)
     #print("above low:   ", above_low)
     print("below high:  ", below_high)
 
