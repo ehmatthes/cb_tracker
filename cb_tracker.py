@@ -104,9 +104,9 @@ def show_single_price(price_dict, index):
     timestamp = price_dict['timestamp'].strftime("%H:%M:%S")
     price = "{0:.2f}".format(price_dict['price'])
     if index == 0:
-        print('$ %s - %s' % (price, timestamp))
+        print('$ %s  %s' % (price, timestamp))
     else:
-        print('  %s - %s' % (price, timestamp))
+        print('  %s  %s' % (price, timestamp))
 
 
 def display_info():
@@ -131,11 +131,9 @@ def display_info():
     current_price = "{0:.2f}".format(current_price)
 
     print("current:    $", current_price)
-    print("high:         %s - %s" % (max_price, max_ts.strftime("%H:%M:%S")))
-    print("low:          %s - %s" % (min_price, min_ts.strftime("%H:%M:%S")))
+    print("\nhigh:         %s  %s" % (max_price, max_ts.strftime("%H:%M:%S %d-%b")))
+    print("low:          %s  %s" % (min_price, min_ts.strftime("%H:%M:%S %d-%b")))
     print("difference:  ", difference)
-    print("\n")
-    #print("current:    $", current_price)
     #print("above low:   ", above_low)
     print("below high:  ", below_high)
 
