@@ -89,7 +89,11 @@ def get_min_max():
     max_ts = datetime.now()
 
     for price_dict in prices:
-        if float(price_dict['price']) < min:
+        if len(prices) == 1:
+            # Only one price, it is the min and the max.
+            min = round(price_dict['price'], 2)
+            max = min
+        elif float(price_dict['price']) < min:
             min = round(price_dict['price'], 2)
             min_ts = price_dict['timestamp']
         elif float(price_dict['price']) > max:
@@ -112,13 +116,18 @@ def show_single_price(price_dict, index):
 def display_info():
     # Clears the terminal window, and shows all relevant info.
     os.system('clear')
-    print("Current coinbase price data:")
+    print("Current coinbase price data.")
+    print("  Tracking last %d prices, " % MAX_PRICES)
+    print("  at %d-minute intervals." % (INTERVAL/60))
+    print("\n")
+
     if len(prices) > MAX_DISPLAY:
         for index, price_dict in enumerate(prices[-MAX_DISPLAY:]):
             show_single_price(price_dict, index)
     else:
         for index, price_dict in enumerate(prices):
             show_single_price(price_dict, index)
+
     print("\n")
     
     min_price, min_ts, max_price, max_ts = get_min_max()
